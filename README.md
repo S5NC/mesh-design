@@ -16,15 +16,13 @@ Limitations:
 - In the future a dynamic routing table would be much more flexible, this would allow specifying multiple recepients for the same message, rather than sending one multiple times. This is better than flooding, as once the message has been acknowledge by a recepient, they can stop trying to send specifically to that one.
 - How do we decide when information is out of date? Do we use a timeout, figure out via GPS position change, or a solution implemented both sources of information and some more?
 
-## LoRa Packet information
+## Packet contents
+
+(partial list, only about routing information and the message at the moment)
 
 (_number transmission number_ may mean _unique packet ID_ is useless)
 
 Each packet contains the following information in a _header_:
-- Message type
-  - This is always present in all messages
-  - Options: **USER COMMUNICATION**, **ACKNOWLEDGEMENT**
-  - Packet type is used instead of changing the payload inside the message body. This is a random choice, the contents of a packet could be known by checking the first bits of the payload instead.
 - Message ID
   - Unique
   - Prevents replay attacks?
@@ -45,6 +43,12 @@ Each packet contains the following information in a _header_:
   - (A single bit could be used to turn specification of packet destination off in the _packet type_ data (Packet type: **MESSAGE SPECIFIC PACKET DESINATION** vs Packet type: **MESSAGE FLOOD PACKET**), this would save a few bits when flooding, but waste a bit when not, but also make the node with organic id 0xFFFF not have to switch it's ID to share it with 0x0000)
 - Destination's node ID
   - 0xFFFF for no particular node (flood to all)
+- Message type
+  - This is always present in all messages
+  - Options: **USER COMMUNICATION**, **ACKNOWLEDGEMENT**
+  - Packet type is used instead of changing the payload inside the message body. This is a random choice, the contents of a packet could be known by checking the first bits of the payload instead.
+- Message
+  - (the actual payload)
 
 ## Examples
 
