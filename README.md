@@ -50,9 +50,11 @@ Each packet contains the following information in a _header_:
 - Message
   - (the actual payload)
 
-## Examples
+## Example 1
 
 (_Knows they can receive packets sent by_ may be useless because a node can't influence who sends them packets, at least for now)
+
+State at the start of this example:
 
 | Node | Can actually receive packets transmitted by | Knows they can receive packets transmitted by | Knows that packets they transmit are received by |
 | - | - | - | - |
@@ -120,3 +122,14 @@ In this example we assume all nodes know of each other's existence and node IDs.
   - Message type: **ACKNOWLEDGEMENT**
   - Message (ACK of): `0xE0A5`
 - Bob's node receives this and now knows that it can sucessfully communicate both ways with Alice's.
+
+State at the end of this example:
+
+| Node | Can actually receive packets transmitted by | Knows they can receive packets transmitted by | Knows that packets they transmit are received by |
+| - | - | - | - |
+| Alice | Bob | Bob | Bob |
+| Bob | Alice, Charlie | Alice, Charlie | Alice, Charlie |
+| Charlie | Bob | Bob | Bob |
+
+Now they can always specify their packet's desinations! (Until it is decided that they need more up-to-date information...)
+
