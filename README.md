@@ -18,6 +18,8 @@ Limitations:
 
 ## Packet contents
 
+Don't include full list of past hops, as this means that header size can grow during message transmission, so payload could be truncated (therefore corrupted and unreadable). The payload size could be limited based on max_hops, but max_hops is hopefully only going to be for floods after the routing is changed to this, and depending on what max_hops is set to, it could cause a reduction of the maximum payload size.
+
 (partial list, only about routing information and the message at the moment)
 
 (_number transmission number_ may mean _unique packet ID_ is useless)
